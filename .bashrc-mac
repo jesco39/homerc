@@ -6,6 +6,10 @@ nvssh () {
 	ssh $(nv --exclude status=decom --name $1 | head -n1)
 }
 
+nvrssh () {
+	ssh -l root $(nv --exclude status=decom --name $1 | head -n1)
+}
+
 nvcssh () {
 	csshX $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1) 
 }
