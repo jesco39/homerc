@@ -7,11 +7,15 @@ nvssh () {
 }
 
 nvrssh () {
-	ssh -l root $(nv --exclude status=decom --name $1 | head -n1)
+  ssh -l root $(nv --exclude status=decom --name $1 | head -n1)
 }
 
 nvcssh () {
-	csshX $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1) 
+  csshX $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1) 
+}
+
+nvami () {
+  nv  --objecttype node_groups --exactget name=aws1 --get graffitis[name]=$1 --fields value
 }
 
 # AWS tools
