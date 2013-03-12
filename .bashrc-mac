@@ -18,6 +18,10 @@ nvami () {
   nv  --objecttype node_groups --exactget name=aws1 --get graffitis[name]=$1 --fields value
 }
 
+nvlistami () {
+  nv --objecttype node_groups --exactget name=aws1 --get graffitis[name]=ami --field name,value
+}
+
 # AWS tools
 if [[ -d $HOME/dev/svn/operations/cg-cloud-tools/trunk ]]; then
   AWS_BASE_DIR=$HOME/dev/svn/operations/cg-cloud-tools/trunk
