@@ -24,10 +24,6 @@ endif
 
 colorscheme zenburn
 
-" Tab and other spacing.....
-set ts=2
-set sw=2
-
 " Used for :TOhtml (works in visual mode too!)
 let html_no_pre = 1
 let html_use_css = 1
@@ -38,8 +34,8 @@ set nu
 " add <> to % matching
 set matchpairs+=<:>
 " use indents for folds
-set foldmethod=indent
-set foldlevel=1
+"set foldmethod=indent
+"set foldlevel=1
 " Use US English for spell
 setlocal spell spelllang=en_us
 " Custom dictionary
@@ -168,7 +164,9 @@ inoremap <S-Left> <C-O>:tabp<CR>
 imap <C-c> <C-O><Plug>Comment
 imap <C-d> <C-O><Plug>DeComment
 
-set autoindent
-set cindent
 syntax on
 set hlsearch
+
+set expandtab
+set shiftwidth=4
+set softtabstop=4
