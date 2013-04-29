@@ -82,9 +82,9 @@ function google () {
 
 # Set custom bashrc for known systems
 case $HOSTNAME in
-  jesco.local)
-    if [[ -f ~/.bashrc-mac ]]; then
-	  source ~/.bashrc-mac
+  jesco)
+    if [[ -f ~/.bashrc-linux ]]; then
+	  source ~/.bashrc-linux
 	fi
   ;;
   modamac.local)
