@@ -1,0 +1,34 @@
+# Set the paths
+PATH=~/bin:/opt/bin:/usr/local/bin:/usr/local/sbin:${PATH}
+
+# leverage nventory for ssh connections
+nvssh () {
+	ssh $(nv --exclude status=decom --name $1 | head -n1)
+}
+
+nvrssh () {
+  ssh -l root $(nv --exclude status=decom --name $1 | head -n1)
+}
+
+nvcssh () {
+  cssh $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1) 
+}
+
+nvami () {
+  nv  --objecttype node_groups --exactget name=aws1 --get graffitis[name]=$1 --fields value
+}
+
+nvlistami () {
+  nv --objecttype node_groups --exactget name=aws1 --get graffitis[name]=ami --field name,value
+}
+
+# AWS tools
+if [[ -d $HOME/dev/svn/operations/cg-cloud-tools/trunk ]]; then
+  AWS_BASE_DIR=$HOME/dev/svn/operations/cg-cloud-tools/trunk
+  AWS_CRED_DIR=$HOME/dev/creds/aws
+  PROJECT_CRED_DIR=$HOME/dev/creds/project_cred
+  PROJECT_BASE_DIR=$HOME/operations/cg-cloud-tools/projects/projects
+  PATH=${PATH}:${AWS_BASE_DIR}/bin
+  export AWS_BASE_DIR AWS_CRED_DIR PROJECT_CRED_DIR PROJECT_BASE_DIR PATH
+  source $AWS_BASE_DIR/etc/aws_bash_profile
+fi
