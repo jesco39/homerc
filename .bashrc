@@ -87,7 +87,7 @@ case $HOSTNAME in
 	  source ~/.bashrc-linux
 	fi
   ;;
-  modamac.local)
+  modamac.office.cs)
     if [[ -f ~/.bashrc-mac ]]; then
 	  source ~/.bashrc-mac
 	fi
