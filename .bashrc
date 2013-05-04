@@ -24,8 +24,6 @@ if ${use_color} ; then
         PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
     fi
 
-    alias ls="ls -G"
-    alias grep="grep -G"
 else
     if [[ ${EUID} == 0 ]] ; then
         # show root@ when we don't have colors
