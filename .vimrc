@@ -167,6 +167,6 @@ imap <C-d> <C-O><Plug>DeComment
 syntax on
 set hlsearch
 
-set expandtab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=4
+set list listchars=tab:⁝·,trail:⋯,eol:▸
