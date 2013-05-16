@@ -1,5 +1,5 @@
 # Set the paths
-PATH=~/bin:/opt/bin:/usr/local/bin:/usr/local/sbin:/Volumes/Data/jesse/.gem/ruby/1.8/bin:~/bin/android-sdk-macosx/platform-tools:${PATH}
+PATH=~/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Volumes/Data/jesse/.gem/ruby/1.8/bin:~/bin/android-sdk-macosx/platform-tools:${PATH}
 
 # leverage nventory for ssh connections
 nvssh () {
