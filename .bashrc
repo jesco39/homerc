@@ -40,11 +40,6 @@ unset safe_term match_lhs
 export HISTCONTROL=ignoreboth
 export EDITOR=/usr/bin/vim
 
-# Alias file
- if [[ -f ~/.aliasrc ]]; then
-                source ~/.aliasrc
- fi
-
 # Time format
 export TIMEFORMAT='r: %R, u: %U, s: %S'
 
@@ -79,20 +74,16 @@ function google () {
 }
 
 # Set custom bashrc for known systems
-case $HOSTNAME in
-  jesco)
+OS=`uname -s`
+case $OS in
+  Linux)
     if [[ -f ~/.bashrc-linux ]]; then
-	  source ~/.bashrc-linux
-	fi
+      source ~/.bashrc-linux
+    fi
   ;;
-  modamac.office.cs)
+  Darwin)
     if [[ -f ~/.bashrc-mac ]]; then
-	  source ~/.bashrc-mac
-	fi
-  ;;
-  moda)
-    if [[ -f ~/.bashrc-linux ]]; then
-	  source ~/.bashrc-linux
-	fi
+      source ~/.bashrc-mac
+    fi
   ;;
 esac

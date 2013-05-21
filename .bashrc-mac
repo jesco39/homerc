@@ -3,7 +3,7 @@ PATH=~/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Volume
 
 # leverage nventory for ssh connections
 nvssh () {
-	ssh $(nv --exclude status=decom --name $1 | head -n1)
+  ssh $(nv --exclude status=decom --name $1 | head -n1)
 }
 
 nvrssh () {
