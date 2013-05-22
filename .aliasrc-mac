@@ -1,0 +1,7 @@
+alias ls='ls -G'
+alias grep='grep -G'
+alias jescodev='ssh dev.jesco39.com'
+alias svnops='cd ~/dev/svn/operations'
+alias svnnag='cd ~/dev/svn/operations/nagios'
+alias svnpuppet='cd ~/dev/svn/operations/puppet'
+alias svnlist='svnmerge avail --summarize | less'

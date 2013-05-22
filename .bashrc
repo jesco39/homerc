@@ -33,10 +33,6 @@ else
     fi
 fi
 
-# Set ls, grep to color mode
-alias ls='ls --color'
-alias grep='grep --color'
-
 # Try to keep environment pollution down, EPA loves us.
 unset safe_term match_lhs
 
@@ -88,6 +84,9 @@ case $OS in
   Darwin)
     if [[ -f ~/.bashrc-mac ]]; then
       source ~/.bashrc-mac
+    fi
+    if [[ -f ~/.aliasrc-mac ]]; then
+      source ~/.aliasrc-mac
     fi
   ;;
 esac
