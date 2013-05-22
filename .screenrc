@@ -1,0 +1,23 @@
+startup_message off
+vbell off
+nethack on
+defutf8 on
+hardstatus string "%{= dK}%?%-Lw%?%{b g}[%{-b}%n*%f %t%?(%u)%?%{+b}]%{= K}%?%+Lw%?%?%= %{b G}| %{= B}%H %{c}%m/%d %{C}%c%{=}"
+hardstatus alwayslastline
+caption string '%{WK}%3n %{k}%t%?'
+multiuser on
+shelltitle "moda"
+sorendition '= dB'
+
+bind ',' layout prev
+bind '.' layout next
+bind ')' select 10
+bind '!' select 11
+bind '@' select 12
+bind '#' select 13
+bind '$' select 14
+bind '%' select 15
+bind '^' select 16
+bind '&' select 17
+bind '*' select 18
+bind '(' select 19
