@@ -27,10 +27,10 @@ if [[ -d $HOME/dev/svn/operations/cg-cloud-tools/trunk ]]; then
   AWS_BASE_DIR=$HOME/dev/svn/operations/cg-cloud-tools/trunk
   AWS_CRED_DIR=$HOME/dev/creds/aws
   PROJECT_CRED_DIR=$HOME/dev/creds/project_cred
-  PROJECT_BASE_DIR=$HOME/operations/cg-cloud-tools/aws-projects
+  PROJECT_BASE_DIR=$HOME/dev/svn/operations/cg-cloud-tools/aws-projects
   PYTHONPATH=$PYTHONPATH:${AWS_BASE_DIR}/python_libs
   PATH=${PATH}:${AWS_BASE_DIR}/bin
-  export AWS_BASE_DIR AWS_CRED_DIR PROJECT_CRED_DIR PROJECT_BASE_DIR PATH
+  export AWS_BASE_DIR AWS_CRED_DIR PROJECT_CRED_DIR PROJECT_BASE_DIR PYTHONPATH PATH
 
   # Generate aws alias profiles for each account
   for account in $(find $AWS_CRED_DIR -mindepth 1 -maxdepth 1 -type d -print | sed 's@.*/@@'); do
