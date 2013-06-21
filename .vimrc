@@ -178,3 +178,6 @@ set list listchars=tab:⁝·,trail:⋯,eol:▸
 nmap \s :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
 nmap \S :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
 nmap \t :set noexpandtab tabstop=4 shiftwidth=4<CR>
+
+" Set paste
+set paste
