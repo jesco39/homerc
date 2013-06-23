@@ -1,6 +1,9 @@
 # Set the paths
 PATH=~/bin:/usr/local/bin:/usr/local/sbin:${PATH}
 
+# JAVA_HOME
+JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
+
 # Source aliasrc
 source ~/.aliasrc
 
@@ -41,3 +44,8 @@ if [[ -d $HOME/dev/svn/operations/cg-cloud-tools/trunk ]]; then
     eval \`awsprofile ${account}\`"
   done
 fi
+
+# EC2 tools
+EC2_HOME=/home/jesco/dev/ec2-api-tools-1.6.7.4
+PATH=${PATH}:${EC2_HOME}/bin
+export EC2_HOME PATH
