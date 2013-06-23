@@ -1,6 +1,9 @@
 # Set the paths
 PATH=~/bin:/usr/local/bin:/usr/local/sbin:${PATH}
 
+# Source aliasrc
+source .aliasrc
+
 # leverage nventory for ssh connections
 nvssh () {
   ssh $(nv --exclude status=decom --name $1 | head -n1)
