@@ -2,7 +2,7 @@
 PATH=~/bin:/usr/local/bin:/usr/local/sbin:${PATH}
 
 # Source aliasrc
-source .aliasrc
+source ~/.aliasrc
 
 # leverage nventory for ssh connections
 nvssh () {
