@@ -34,7 +34,7 @@ if [[ -d $HOME/dev/svn/operations/cg-cloud-tools/trunk ]]; then
   AWS_CRED_DIR=$HOME/dev/creds/aws
   PROJECT_CRED_DIR=$HOME/dev/creds/project_cred
   PROJECT_BASE_DIR=$HOME/operations/cg-cloud-tools/projects/projects
-  PYTHONPATH=${AWS_BASE_DIR}/python_libs
+  PYTHONPATH=${AWS_BASE_DIR}/python_libs:${HOME}/dev/boto
   PATH=${PATH}:${AWS_BASE_DIR}/bin
   export AWS_BASE_DIR AWS_CRED_DIR PROJECT_CRED_DIR PROJECT_BASE_DIR PYTHONPATH PATH
 
