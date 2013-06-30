@@ -9,15 +9,15 @@ source ~/.aliasrc
 
 # leverage nventory for ssh connections
 nvssh () {
-  ssh $(nv --exclude status=decom --name $1 | head -n1)
+  ssh $(nv --exclude status[name]=decom --name $1 | head -n1)
 }
 
 nvrssh () {
-  ssh -l root $(nv --exclude status=decom --name $1 | head -n1)
+  ssh -l root $(nv --exclude status[name]=decom --name $1 | head -n1)
 }
 
 nvcssh () {
-  cssh $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1) 
+  cssh $(nv --exclude status[name]=decom --name $1 | awk -v ORS=' ' 1) 
 }
 
 nvami () {
