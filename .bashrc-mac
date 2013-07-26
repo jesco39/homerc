@@ -39,3 +39,6 @@ if [[ -d $HOME/dev/svn/operations/cg-cloud-tools/trunk ]]; then
   done
 
 fi
+
+# set title prompts
+export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}\007"'
