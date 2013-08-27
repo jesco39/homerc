@@ -1,5 +1,5 @@
 # Set the paths
-PATH=~/bin:/usr/local/bin:/usr/local/sbin:${PATH}
+PATH=~/bin:~/dev/android-sdk-linux/tools:/usr/local/bin:/usr/local/sbin:${PATH}
 
 # JAVA_HOME
 JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/jre
