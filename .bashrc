@@ -8,6 +8,14 @@ match_lhs=""
     && match_lhs=$(dircolors --print-database)
 [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
 
+# Set colors
+BLACK="\[\033[0;38m\]"
+RED="\[\033[0;31m\]"
+RED_BOLD="\[\033[01;31m\]"
+BLUE="\[\033[01;34m\]"
+GREEN="\[\033[01;32m\]"
+WHITE="\[\033[00m\]"
+
 # Add functions for scm display
 parse_git_branch () {
   git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)# git::\1#'
@@ -22,13 +30,6 @@ parse_svn_repository_root() {
   svn info 2>/dev/null | sed -ne 's#^Repository Root: ##p'
 }
 
-BLACK="\[\033[0;38m\]"
-RED="\[\033[0;31m\]"
-RED_BOLD="\[\033[01;31m\]"
-BLUE="\[\033[01;34m\]"
-GREEN="\[\033[01;32m\]"
-WHITE="\[\033[00m\]"
-
 if ${use_color} ; then
     # Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
     if type -P dircolors >/dev/null ; then
@@ -40,9 +41,9 @@ if ${use_color} ; then
     fi
 
     if [[ ${EUID} == 0 ]] ; then
-        PS1="$RED\u@\h $BLUE\w$RED_BOLD \$(parse_git_branch)\$(parse_svn_branch) $ $WHITE"
+        PS1="$RED\u@\h $BLUE\W$RED_BOLD \$(parse_git_branch)\$(parse_svn_branch) $ $WHITE"
     else
-        PS1="$GREEN\u@\h $BLUE\w$RED_BOLD \$(parse_git_branch)\$(parse_svn_branch) $BLUE$ $WHITE"
+        PS1="$GREEN\u@\h $BLUE\W$RED_BOLD \$(parse_git_branch)\$(parse_svn_branch) $BLUE$ $WHITE"
     fi
 
 else
