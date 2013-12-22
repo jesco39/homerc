@@ -18,7 +18,8 @@ WHITE="\[\033[00m\]"
 
 # Add functions for scm display
 parse_git_branch () {
-  git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)# git::\1#'
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo -e "git::${ref#refs/heads/}"
 }
 parse_svn_branch() {
   parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk '{print "svn::"$1"" }'
