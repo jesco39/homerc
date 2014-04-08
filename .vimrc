@@ -182,12 +182,6 @@ nmap \t :set noexpandtab tabstop=4 shiftwidth=4<CR>
 " Set paste
 set paste
 
-" Set visual line for 80 charecter limit
-set colorcolumn=+1        " highlight column after 'textwidth'
-set colorcolumn=+1,+2,+3  " highlight three columns after 'textwidth'
-highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
-set colorcolumn=80
-
 """" Configure bundles
 set nocompatible              " be iMproved
 filetype off                  " required!
