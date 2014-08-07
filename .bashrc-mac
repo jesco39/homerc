@@ -11,7 +11,7 @@ nvrssh () {
 }
 
 nvcssh () {
-  csshX $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1) 
+  csshX $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
 }
 
 nvami () {
@@ -20,6 +20,13 @@ nvami () {
 
 nvlistami () {
   nv --objecttype node_groups --exactget name=aws1 --get graffitis[name]=ami --field name,value
+}
+
+ppkick () {
+  SERVERS=$(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
+  for SERVER in $SERVERS; do
+    ssh $SERVER "sudo puppet agent -t"
+  done
 }
 
 # AWS tools
