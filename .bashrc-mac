@@ -25,7 +25,8 @@ nvlistami () {
 ppkick () {
   SERVERS=$(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
   for SERVER in $SERVERS; do
-    ssh $SERVER "sudo puppet agent -t"
+    echo "Triggering puppet run on $SERVER"
+    ssh $SERVER "sudo puppet agent -t" &
   done
 }
 
