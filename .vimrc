@@ -173,6 +173,7 @@ set tabstop=4
 set expandtab
 set shiftwidth=4
 set list listchars=tab:⁝·,trail:⋯,eol:▸
+set ruler
 
 " You can't please everyone
 nmap \s :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
