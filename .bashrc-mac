@@ -37,7 +37,7 @@ if [[ -d $HOME/dev/git/cg-cloud-tools ]]; then
   AWS_CRED_DIR=$HOME/dev/creds/aws
   PROJECT_CRED_DIR=$HOME/dev/creds/project_cred
   PROJECT_BASE_DIR=$HOME/dev/git/cg-cloud-tools-cluster-files
-  PYTHONPATH=$PYTHONPATH:${AWS_BASE_DIR}/python_libs:/Users/escobedoj/dev/boto
+  PYTHONPATH=$PYTHONPATH:${AWS_BASE_DIR}/python_libs:/Users/escobedoj/dev/boto:${AWS_BASE_DIR}/bin
   PATH=${PATH}:${AWS_BASE_DIR}/bin
   export AWS_BASE_DIR AWS_CONF_DIR AWS_CRED_DIR PROJECT_CRED_DIR PROJECT_BASE_DIR PYTHONPATH PATH
 
