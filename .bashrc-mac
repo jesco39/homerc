@@ -21,7 +21,9 @@ nvami () {
 nvlistami () {
   nv --objecttype node_groups --exactget name=aws1 --get graffitis[name]=ami --field name,value
 }
-
+getnvgroup () {
+  nv --objecttype node_groups --exactget name=$1 --field description,owner
+}
 ppkick () {
   SERVERS=$(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
   for SERVER in $SERVERS; do
