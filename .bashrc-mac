@@ -13,6 +13,9 @@ nvrssh () {
 nvcssh () {
   csshX $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
 }
+nvrcssh () {
+  csshX -l root $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
+}
 
 nvami () {
   nv  --objecttype node_groups --exactget name=aws1 --get graffitis[name]=$1 --fields value
@@ -28,8 +31,11 @@ ppkick () {
   SERVERS=$(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
   for SERVER in $SERVERS; do
     echo "Triggering puppet run on $SERVER"
-    ssh $SERVER "telnet 127.0.0.1 7140"
+    tickle $SERVER &
   done
+}
+tickle () {
+  ssh $1 "telnet 127.0.0.1 7140"
 }
 
 # AWS tools
