@@ -34,8 +34,9 @@ set nu
 " add <> to % matching
 set matchpairs+=<:>
 " use indents for folds
-"set foldmethod=indent
-"set foldlevel=1
+set foldmethod=indent
+set foldnestmax=1
+nnoremap <space> za
 " Use US English for spell
 setlocal spell spelllang=en_us
 " Custom dictionary
