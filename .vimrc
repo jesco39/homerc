@@ -35,7 +35,7 @@ set nu
 set matchpairs+=<:>
 " use indents for folds
 set foldmethod=indent
-set foldnestmax=1
+set foldnestmax=2
 nnoremap <space> za
 " Use US English for spell
 setlocal spell spelllang=en_us
