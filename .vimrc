@@ -1,25 +1,33 @@
+function! ResetTitle()
+    " disable vim's ability to set the title
+    exec "set title t_ts='' t_fs=''"
+
+    " and restore it to 'bash'
+    exec ":!echo -e '\033kstark\033\\'\<CR>"
+endfunction
+
 if ! has("gui_running")
-       " Make X terminal emulators mo' better
-       if &term != "linux"
-               " 256 colors
-               set t_Co=256
-               " better mouse handling
-               set ttymouse=xterm2
-       endif
-       " fancy mouse support (such as resize windows and visual mode with mouse)
-       "set mouse=nvh
-       set mouse=a
-       if &term == "screen" || &term == "screen-bce"
-               " fix End key
-               exec "set <End>=\eOF"
-               " set custom title
-               "set titlestring=%M%{hostname()}:\ %t
-               set titlestring=%M%h:\ %t
-               set titlelen=15
-               exec "set t_ts=\ek"
-               exec "set t_fs=\e\\"
-               set title
-       endif
+    " Make X terminal emulators mo' better
+    if &term != "linux"
+        " 256 colors
+        set t_Co=256
+        " better mouse handling
+        set ttymouse=xterm2
+    endif
+    " fancy mouse support (such as resize windows and visual mode with mouse)
+    set mouse=a
+    " set custom title
+    autocmd BufEnter * let &titlestring = hostname() . "(" . expand("%:t") . ")"
+    if &term == "screen" || &term == "xterm-256color"
+        exec "set <End>=\eOF"
+        exec "set t_ts=\ek"
+        exec "set t_fs=\e\\"
+        auto BufEnter * :set title | let &titlestring = hostname() . "(" . expand("%:t") . ")"
+        auto VimLeave * silent call ResetTitle()
+    endif
+    if &term == "screen" || &term == "xterm-256color"
+        set title
+    endif
 endif
 
 colorscheme zenburn
@@ -180,6 +188,9 @@ set ruler
 nmap \s :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
 nmap \S :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
 nmap \t :set noexpandtab tabstop=4 shiftwidth=4<CR>
+
+" Set paste
+set paste
 
 """" Configure bundles
 set nocompatible              " be iMproved
