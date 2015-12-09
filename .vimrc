@@ -191,6 +191,7 @@ nmap \t :set noexpandtab tabstop=4 shiftwidth=4<CR>
 
 " Set paste
 set paste
+set ruler
 
 """" Configure bundles
 set nocompatible              " be iMproved
@@ -200,7 +201,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 " My bundles here:
 Bundle 'airblade/vim-gitgutter'

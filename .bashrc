@@ -18,17 +18,17 @@ WHITE="\[\033[00m\]"
 
 # Add functions for scm display
 parse_git_branch () {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo -e "git::${ref#refs/heads/}"
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo -e "git::${ref#refs/heads/}"
 }
 parse_svn_branch() {
-  parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk '{print "svn::"$1"" }'
+    parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk '{print "svn::"$1"" }'
 }
 parse_svn_url() {
-  svn info 2>/dev/null | sed -ne 's#^URL: ##p'
+    svn info 2>/dev/null | sed -ne 's#^URL: ##p'
 }
 parse_svn_repository_root() {
-  svn info 2>/dev/null | sed -ne 's#^Repository Root: ##p'
+    svn info 2>/dev/null | sed -ne 's#^Repository Root: ##p'
 }
 
 if ${use_color} ; then
@@ -46,7 +46,6 @@ if ${use_color} ; then
     else
         PS1="$GREEN\u@\h $BLUE\W$RED_BOLD \$(parse_git_branch)\$(parse_svn_branch) $BLUE$ $WHITE"
     fi
-
 else
     if [[ ${EUID} == 0 ]] ; then
         # show root@ when we don't have colors
@@ -68,48 +67,46 @@ export TIMEFORMAT='r: %R, u: %U, s: %S'
 
 # mkdir, cd into it
 mkcd () {
-        mkdir -p "$*"
-        cd "$*"
+    mkdir -p "$*"
+    cd "$*"
 }
 
 # Wiki using dig
 function wiki () {
-        COLUMNS=`tput cols`
-        dig +short txt ${1}.wp.dg.cx | sed -e 's/" "//g' -e 's/^"//g' -e 's/"$//g' -e 's/ http:/\n\nhttp:/' | fmt -w $COLUMNS
+    COLUMNS=`tput cols`
+    dig +short txt ${1}.wp.dg.cx | sed -e 's/" "//g' -e 's/^"//g' -e 's/"$//g' -e 's/ http:/\n\nhttp:/' | fmt -w $COLUMNS
 }
 
 # Google my noodle in bash
 function google () {
-        query=""
-        for this_query_term in $@
-        do
-                query="${query}${this_query_term}+"
-        done
-        url="http://www.google.com/search?q=${query}"
-
-        remote_addr=`who am i | awk -F\( '{print $2}' | sed 's/)//'`
-
-        if [ -z "$remote_addr" ]; then
-          open "$url"
-        else
-          links "$url"
-        fi
+    query=""
+    for this_query_term in $@
+    do
+        query="${query}${this_query_term}+"
+    done
+    url="http://www.google.com/search?q=${query}"
+    remote_addr=`who am i | awk -F\( '{print $2}' | sed 's/)//'`
+    if [ -z "$remote_addr" ]; then
+        open "$url"
+    else
+        links "$url"
+    fi
 }
 
 # Set custom bashrc for known systems
 OS=`uname -s`
 case $OS in
-  Linux)
-    if [[ -f ~/.bashrc-linux ]]; then
-      source ~/.bashrc-linux
-    fi
-  ;;
-  Darwin)
-    if [[ -f ~/.bashrc-mac ]]; then
-      source ~/.bashrc-mac
-    fi
-    if [[ -f ~/.aliasrc-mac ]]; then
-      source ~/.aliasrc-mac
-    fi
-  ;;
+    Linux)
+        if [[ -f ~/.bashrc-linux ]]; then
+            source ~/.bashrc-linux
+        fi
+    ;;
+    Darwin)
+        if [[ -f ~/.bashrc-mac ]]; then
+            source ~/.bashrc-mac
+        fi
+        if [[ -f ~/.aliasrc-mac ]]; then
+            source ~/.aliasrc-mac
+        fi
+    ;;
 esac

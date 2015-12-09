@@ -1,5 +1,4 @@
 alias ls='ls -G'
 alias grep='grep -G'
-alias jescodev='ssh dev.jesco39.com'
 alias svnlist='svnmerge avail --summarize | less'
 alias curl='/usr/bin/curl'
