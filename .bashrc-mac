@@ -39,6 +39,7 @@ tickle () {
 }
 
 # Host query functions
+export DCS='fra1 ams2 iad2 las1 las2 las3 lab1 lax1 lax2 sjc1 hkg1'
 function h() {
     if [ $1 == "--all" ]; then
         search='^f.*-'
@@ -53,20 +54,19 @@ function alh() {
     if [ "$1" == "--all" ]; then
         arg=$1
     fi
-    for x in fra1 ams2 iad2 las1 las2 lab1 lax2 sjc1 hkg1
+    for x in $DCS
         do h ${arg} ${x}
     done
 }
 
 # SSH by Datacenter
-DCS='iad2 las2 las1 iad1 sjc1 ams1'
 function dssh () {
-    DOMAIN=$1
+    DC=$1
     PATTERN=$2
-    host -la ${DOMAIN}.fanops.net | awk -F" " '{print $1}' | sed -e 's/\.$//g' | egrep ${PATTERN}
+    ssh $(h $DC | grep $PATTERN | tail -n1)
 }
 for DC in $DCS; do
-    alias $DC="dssh $DC.fanops.net"
+    alias $DC="dssh $DC"
 done
 
 # AWS tools
