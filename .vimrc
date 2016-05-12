@@ -197,6 +197,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
+Plugin 'nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
