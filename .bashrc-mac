@@ -1,5 +1,5 @@
 # Set the paths
-PATH=~/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/Volumes/Data/jesse/.gem/ruby/1.8/bin:~/dev/android/tools:~/dev/android/platform-tools:${PATH}
+PATH=~/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:~/dev/android/tools:~/dev/android/platform-tools:${PATH}
 
 # leverage nventory for ssh connections
 nvssh () {
@@ -39,7 +39,7 @@ tickle () {
 }
 
 # Host query functions
-export DCS='fra1 ams2 iad2 las1 las2 las3 lab1 lax1 lax2 sjc1 hkg1'
+export DCS='fra1 ams2 iad2 las1 las2 las3 lab1 lax2 sjc1 hkg1'
 function h() {
     if [ $1 == "--all" ]; then
         search='^f.*-'
@@ -69,22 +69,29 @@ for DC in $DCS; do
     alias $DC="dssh $DC"
 done
 
+# Configure github for personal
+function gitconf () {
+    GUSER=$1
+    case $GUSER in
+        'jesco39')
+            git config --local user.name 'Jesse Escobedo'
+            git config --local user.email jesse@moda.bz
+        ;;
+        'rubicon')
+            git config --local user.name 'Jesse Escobedo'
+            git config --local user.email jescobedo@rubiconproject.com
+        ;;
+        *)
+            git config --local user.name 'Jesse Escobedo'
+            git config --local user.email jesse@moda.bz
+        ;;
+    esac
+}
+
 # AWS tools
-if [[ -d $HOME/dev/git/cg-cloud-tools ]]; then
-    AWS_BASE_DIR=$HOME/dev/git/cg-cloud-tools
-    AWS_CONF_DIR=$HOME/dev/git/cg-cloud-tools-conf/etc
-    AWS_CRED_DIR=$HOME/dev/creds/aws
-    PROJECT_CRED_DIR=$HOME/dev/creds/project_cred
-    PROJECT_BASE_DIR=$HOME/dev/git/cg-cloud-tools-cluster-files
-    PYTHONPATH=$PYTHONPATH:$AWS_BASE_DIR/python_libs:$HOME/dev/boto:$AWS_BASE_DIR/bin
-    PATH=$PATH:$AWS_BASE_DIR/bin
-    export AWS_BASE_DIR AWS_CONF_DIR AWS_CRED_DIR PROJECT_CRED_DIR PROJECT_BASE_DIR PYTHONPATH PATH
-    # Generate aws alias profiles for each account
-    for account in $(find $AWS_CRED_DIR -mindepth 1 -maxdepth 1 -type d -print | sed 's@.*/@@'); do
-        alias aws${account}="unset AWS_CREDENTIAL_FILE
-        eval \`awsprofile ${account}\`"
-    done
-fi
+AWS_CONF_DIR=$HOME/dev/git/cg-cloud-tools-conf/etc
+AWS_CRED_DIR=$HOME/dev/creds/aws
+export AWS_CONF_DIR AWS_CRED_DIR
 
 # set title prompts
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}\007"'
