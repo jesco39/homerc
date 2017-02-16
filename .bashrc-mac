@@ -6,6 +6,12 @@ nvssh () {
     ssh $(nv --exclude status=decom --name $1 | head -n1)
 }
 
+assh () {
+    host=$(arsenal -q nodes search name=$1 | head -n1)
+    clean_host=$(python -c "import sys; print str(sys.argv[1]).strip()" ${host})
+    ssh -q $clean_host
+}
+
 nvrssh () {
     ssh -l root $(nv --exclude status=decom --name $1 | head -n1)
 }
@@ -39,7 +45,7 @@ tickle () {
 }
 
 # Host query functions
-export DCS='fra1 ams2 iad2 las1 las2 las3 lab1 lax2 sjc1 hkg1'
+export DCS='fra1 ams3 iad2 iad3 las1 las2 las3 lab1 sjc1 hkg1 inf1'
 function h() {
     if [ $1 == "--all" ]; then
         search='^f.*-'
