@@ -12,6 +12,11 @@ assh () {
     ssh -q $clean_host
 }
 
+cash () {
+    hosts=$(arsenal -q nodes search name=$1,status=inservice)
+    i2cssh $hosts
+}
+
 nvrssh () {
     ssh -l root $(nv --exclude status=decom --name $1 | head -n1)
 }
