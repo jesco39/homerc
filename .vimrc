@@ -226,3 +226,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " Enable two-space soft tabs for puppet code
 au FileType puppet setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
+" Silence mac vim bell
+autocmd! GUIEnter * set vb t_vb=
