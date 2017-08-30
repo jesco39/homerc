@@ -32,6 +32,8 @@ endif
 
 colorscheme zenburn
 
+set encoding=utf-8
+
 " Used for :TOhtml (works in visual mode too!)
 let html_no_pre = 1
 let html_use_css = 1
