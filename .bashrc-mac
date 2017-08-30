@@ -12,8 +12,19 @@ assh () {
     ssh -q $clean_host
 }
 
+dassh () {
+    host=$(arsenal -q --server arsenal.inf1.fanops.net nodes search name=$1 | head -n1)
+    clean_host=$(python -c "import sys; print str(sys.argv[1]).strip()" ${host})
+    ssh -q $clean_host
+}
+
 cash () {
     hosts=$(arsenal -q nodes search name=$1,status=inservice)
+    i2cssh $hosts
+}
+
+dcash () {
+    hosts=$(arsenal -q --server arsenal.inf1.fanops.net nodes search name=$1,status=inservice)
     i2cssh $hosts
 }
 
