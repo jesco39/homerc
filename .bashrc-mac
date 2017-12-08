@@ -1,5 +1,5 @@
 # Set the paths
-PATH=~/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:~/dev/android/tools:~/dev/android/platform-tools:${PATH}
+PATH=${PATH}:~/bin:/opt/local/bin:/opt/local/sbin:~/dev/android/tools:~/dev/android/platform-tools
 
 # leverage nventory for ssh connections
 nvssh () {

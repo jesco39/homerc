@@ -4,4 +4,3 @@ alias svnlist='svnmerge avail --summarize | less'
 alias curl='/usr/bin/curl'
 alias vim='/usr/local/bin/mvim'
 alias gem='/usr/local/bin/gem'
-alias arsenal="touch ${HOME}/.arsenal_cookie; docker run -it --rm -e USER=${USER} -v ${HOME}/.arsenal_cookie:/root/.arsenal_cookie docker.rp-core.com/rp_arsenal"
