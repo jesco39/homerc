@@ -1,5 +1,6 @@
 # Set the paths
 PATH=${PATH}:~/bin:/opt/local/bin:/opt/local/sbin:~/dev/android/tools:~/dev/android/platform-tools
+PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 
 # leverage nventory for ssh connections
 nvssh () {
@@ -19,7 +20,7 @@ dassh () {
 }
 
 cash () {
-    hosts=$(arsenal -q nodes search name=$1,status=inservice)
+    hosts=$(arsenal -q nodes search name=$1,status=inservice,setup)
     i2cssh $hosts
 }
 
@@ -108,6 +109,16 @@ function gitconf () {
             git config --local user.email jesse@moda.bz
         ;;
     esac
+}
+
+# Reload nginx to test branches
+function test_branch () {
+    SERVERS=$(arsenal nodes search name=fopp-pup.*.$1,status=inservice | grep -v fopp-pup5)
+    for server in $SERVERS; do
+        echo "Reloading nginx on $server"
+        ssh -q root@$server "service nginx reload"
+        sleep 3
+    done
 }
 
 # AWS tools
