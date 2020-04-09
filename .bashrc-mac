@@ -20,8 +20,9 @@ dassh () {
 }
 
 cash () {
+    options=$2
     hosts=$(arsenal -q nodes search name=$1,status=inservice,setup)
-    i2cssh $hosts
+    i2cssh $options $hosts
 }
 
 dcash () {
@@ -111,20 +112,17 @@ function gitconf () {
     esac
 }
 
-# Reload nginx to test branches
-function test_branch () {
-    SERVERS=$(arsenal nodes search name=fopp-pup.*.$1,status=inservice | grep -v fopp-pup5)
-    for server in $SERVERS; do
-        echo "Reloading nginx on $server"
-        ssh -q root@$server "service nginx reload"
-        sleep 3
-    done
+function gitgc () {
+    git pull
+    git fetch --prune
+    git branch -D $(git branch | egrep -v 'production|master')
+    git gc
 }
 
-# AWS tools
-AWS_CONF_DIR=$HOME/dev/git/cg-cloud-tools-conf/etc
-AWS_CRED_DIR=$HOME/dev/creds/aws
-export AWS_CONF_DIR AWS_CRED_DIR
+function gitbranch () {
+    git co $1 && git pull
+    git co -b $2_WIP
+}
 
 # set title prompts
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}\007"'

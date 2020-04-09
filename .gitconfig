@@ -14,3 +14,6 @@
 
 [push]
     default = current
+[core]
+    excludesfile = /Users/jescobedo/.gitignore_global
+	editor = /usr/local/bin/mvim

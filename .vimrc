@@ -198,6 +198,7 @@ Plugin 'Puppet-Syntax-Highlighting'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -229,3 +230,6 @@ au FileType puppet setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " Silence mac vim bell
 autocmd! GUIEnter * set vb t_vb=
+
+" Indent Guids
+let g:indent_guides_enable_on_vim_startup = 1
