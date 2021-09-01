@@ -1,6 +1,11 @@
+# Need to convert to zsh, but until then...
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Set the paths
 PATH=${PATH}:~/bin:/opt/local/bin:/opt/local/sbin:~/dev/android/tools:~/dev/android/platform-tools
 PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+PATH="/usr/local/opt/python@3.8/bin:$PATH"
+PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
 # leverage nventory for ssh connections
 nvssh () {
@@ -126,3 +131,6 @@ function gitbranch () {
 
 # set title prompts
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}\007"'
+
+# Set default region for AWS
+export AWS_DEFAULT_REGION=us-west-2
