@@ -6,11 +6,8 @@ PATH=${PATH}:~/bin:/opt/local/bin:/opt/local/sbin:~/dev/android/tools:~/dev/andr
 PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 PATH="/usr/local/opt/python@3.8/bin:$PATH"
 PATH="/usr/local/opt/mysql-client/bin:$PATH"
-
-# leverage nventory for ssh connections
-nvssh () {
-    ssh $(nv --exclude status=decom --name $1 | head -n1)
-}
+PATH="~/go/bin:$PATH"
+PATH="$PATH:/Users/jescobedo/.rd/bin"
 
 assh () {
     host=$(arsenal -q nodes search name=$1 | head -n1)
@@ -35,84 +32,21 @@ dcash () {
     i2cssh $hosts
 }
 
-nvrssh () {
-    ssh -l root $(nv --exclude status=decom --name $1 | head -n1)
-}
-
-nvcssh () {
-    csshX $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
-}
-nvrcssh () {
-    csshX -l root $(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
-}
-
-nvami () {
-    nv  --objecttype node_groups --exactget name=aws1 --get graffitis[name]=$1 --fields value
-}
-
-nvlistami () {
-    nv --objecttype node_groups --exactget name=aws1 --get graffitis[name]=ami --field name,value
-}
-getnvgroup () {
-    nv --objecttype node_groups --exactget name=$1 --field description,owner
-}
-ppkick () {
-    SERVERS=$(nv --exclude status=decom --name $1 | awk -v ORS=' ' 1)
-    for SERVER in $SERVERS; do
-        echo "Triggering puppet run on $SERVER"
-        tickle $SERVER &
-    done
-}
-tickle () {
-    ssh $1 "telnet 127.0.0.1 7140"
-}
-
-# Host query functions
-export DCS='fra1 ams3 iad2 iad3 las1 las2 las3 lab1 sjc1 hkg1 inf1'
-function h() {
-    if [ $1 == "--all" ]; then
-        search='^f.*-'
-        domain=$2
-    else
-        search='^f.{27,28}$'
-        domain=$1
-    fi
-    host -la ${domain}.fanops.net | awk -F" " '{print $1}' | sed -e 's/\.$//g' | egrep ${search}
-}
-function alh() {
-    if [ "$1" == "--all" ]; then
-        arg=$1
-    fi
-    for x in $DCS
-        do h ${arg} ${x}
-    done
-}
-
-# SSH by Datacenter
-function dssh () {
-    DC=$1
-    PATTERN=$2
-    ssh $(h $DC | grep $PATTERN | tail -n1)
-}
-for DC in $DCS; do
-    alias $DC="dssh $DC"
-done
-
 # Configure github for personal
 function gitconf () {
     GUSER=$1
     case $GUSER in
         'jesco39')
             git config --local user.name 'Jesse Escobedo'
-            git config --local user.email jesse@moda.bz
+            git config --local user.email jesco039@gmail.com
         ;;
-        'rubicon')
+        'magnite')
             git config --local user.name 'Jesse Escobedo'
-            git config --local user.email jescobedo@rubiconproject.com
+            git config --local user.email jescobedo@magnite.com
         ;;
         *)
             git config --local user.name 'Jesse Escobedo'
-            git config --local user.email jesse@moda.bz
+            git config --local user.email jesco039@gmail.com
         ;;
     esac
 }
@@ -120,13 +54,8 @@ function gitconf () {
 function gitgc () {
     git pull
     git fetch --prune
-    git branch -D $(git branch | egrep -v 'production|master')
+    git branch -D $(git branch | egrep -v 'production|master|main')
     git gc
-}
-
-function gitbranch () {
-    git co $1 && git pull
-    git co -b $2_WIP
 }
 
 # set title prompts
@@ -134,3 +63,6 @@ export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}\007"'
 
 # Set default region for AWS
 export AWS_DEFAULT_REGION=us-west-2
+
+# Source ktx env.sh
+source /Users/jescobedo/dev/git/Magnite/hephaestus/ktx/env.sh

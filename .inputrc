@@ -1,3 +1,6 @@
 # enable autocomplete (using up/down arrow keys)
 "\e\e[A": history-search-backward
 "\e\e[B": history-search-forward
+
+# Disable forward slash during bash completion
+#set mark-directories Off

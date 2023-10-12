@@ -17,3 +17,6 @@
 [core]
     excludesfile = /Users/jescobedo/.gitignore_global
 	editor = /usr/local/bin/mvim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[pull]
+	ff = only
